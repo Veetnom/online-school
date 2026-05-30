@@ -1,0 +1,10 @@
+venv/
+.venv/
+ENV/
+
+*.sqlite3
+
+.vscode/
+.DS_Store
+
+media/
