@@ -1,0 +1,270 @@
+import type {
+  CartItem,
+  ChatThread,
+  Course,
+  Curator,
+  EnrolledCourse,
+  HomeworkItem,
+  LessonItem,
+  ScheduleEvent,
+  Student,
+  Task,
+  TeacherAssignment,
+  TeacherHomework,
+} from '../types'
+
+export const storeCourses: Course[] = [
+  {
+    id: '1',
+    title: 'Русский язык',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+    subtitle:
+      'Основной курс 3.0 — это комплексная система подготовки к ЕГЭ по русскому языку на максимум!',
+    description:
+      'Курс поможет вам систематизировать знания, отработать все типы заданий и научиться писать сочинение на высокий балл. Вы получите доступ к теории, практике и регулярной обратной связи от кураторов.',
+    highlights: [
+      'Интенсивный формат с еженедельными занятиями',
+      'Теория через практику — от простого к сложному',
+      'Домашние работы и пробные экзамены',
+      'Дополнительные материалы: карточки, шпаргалки',
+    ],
+    program: [
+      { id: '1', title: '1. Первая часть ЕГЭ', expanded: false },
+      { id: '2', title: '2. Сочинение', expanded: false },
+      {
+        id: '3',
+        title: '3. Повторение тем',
+        expanded: true,
+        lessons: ['Орфография', 'Пунктуация', 'Морфология'],
+      },
+    ],
+  },
+  {
+    id: '2',
+    title: 'Математика',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+    subtitle: 'Подготовка к ЕГЭ по математике профильного уровня',
+    description: 'Комплексная подготовка к ЕГЭ по математике.',
+    highlights: ['Теория и практика', 'Регулярные проверки', 'Кураторская поддержка'],
+    program: [
+      { id: '1', title: '1. Алгебра', expanded: false },
+      { id: '2', title: '2. Геометрия', expanded: false },
+    ],
+  },
+  {
+    id: '3',
+    title: 'Химия',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+    subtitle: 'Подготовка к ЕГЭ по химии',
+    description: 'Комплексная подготовка к ЕГЭ по химии.',
+    highlights: ['Теория и практика', 'Лабораторные задания'],
+    program: [{ id: '1', title: '1. Органическая химия', expanded: false }],
+  },
+  {
+    id: '4',
+    title: 'Информатика',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+    subtitle: 'Подготовка к ЕГЭ по информатике',
+    description: 'Комплексная подготовка к ЕГЭ по информатике.',
+    highlights: ['Программирование', 'Алгоритмы'],
+    program: [{ id: '1', title: '1. Алгоритмы', expanded: false }],
+  },
+]
+
+export const enrolledCourses: EnrolledCourse[] = [
+  {
+    id: '1',
+    title: 'Русский язык',
+    progress: 70,
+    pointsEarned: 430,
+    pointsTotal: 630,
+    currentTask: 'Задание №10. Правописание приставок',
+  },
+  {
+    id: '4',
+    title: 'Информатика',
+    progress: 70,
+    pointsEarned: 430,
+    pointsTotal: 630,
+  },
+]
+
+export const homeworkItems: HomeworkItem[] = [
+  {
+    id: '1',
+    title: '4. Орфоэпия',
+    subject: 'Русский Язык',
+    daysLeft: 5,
+    points: 0,
+    maxPoints: 10,
+    status: 'published',
+  },
+  {
+    id: '2',
+    title: '15. Планометрия',
+    subject: 'Математика',
+    daysLeft: 7,
+    points: 0,
+    maxPoints: 10,
+    status: 'published',
+  },
+  {
+    id: '3',
+    title: '12. Правописание Не и Ни',
+    subject: 'Русский Язык бля',
+    daysLeft: 7,
+    points: 0,
+    maxPoints: 10,
+    status: 'published',
+  },
+  {
+    id: '4',
+    title: '13. Тригонометрия',
+    subject: 'Математика',
+    daysLeft: 10,
+    points: 0,
+    maxPoints: 10,
+    status: 'published',
+  },
+  {
+    id: '5',
+    title: '13. Скайрим',
+    subject: 'Математика',
+    daysLeft: 10,
+    points: 0,
+    maxPoints: 10,
+    status: 'published',
+  },
+]
+
+export const cartItems: CartItem[] = [
+  {
+    id: 'history',
+    title: 'История',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+  },
+  {
+    id: 'russian',
+    title: 'Русский язык',
+    instructorName: 'Аля Виноградова',
+    price: 24165,
+  },
+]
+
+export const scheduleEvents: ScheduleEvent[] = [
+  {
+    id: '1',
+    date: '2026-03-31',
+    title: 'Информатика - Алгебра лог...',
+    color: 'gray',
+    completed: true,
+  },
+  {
+    id: '2',
+    date: '2026-04-01',
+    title: 'Русский язык - Орфоэпия',
+    color: 'orange',
+  },
+  {
+    id: '3',
+    date: '2026-04-01',
+    title: 'Математика - Планиметрия',
+    color: 'blue',
+  },
+]
+
+export const chatThreads: ChatThread[] = [
+  {
+    id: '1',
+    name: 'Мария',
+    avatar: 'М',
+    lastMessage: 'Здравствуйте! Вы записались на курс...',
+    time: '11:34',
+    messages: [
+      {
+        id: '1',
+        text: "Здравствуйте! Поздравляю вас, вы записались на курс 'Русский Язык'. Я ваш личный куратор, вы можете обращаться ко мне по всем вопросам",
+        time: '11:32',
+        isOwn: false,
+      },
+      {
+        id: '2',
+        text: 'Здравствуйте! Я очень рад, что записался на ваш курс.',
+        time: '11:34',
+        isOwn: true,
+      },
+    ],
+  },
+]
+
+export const students: Student[] = [
+  { id: '1', name: 'Александр', email: 'alex@mail.ru', progress: 70, points: 490, startedAt: '01.09.2025' },
+  { id: '2', name: 'Елена', email: 'elena@mail.ru', progress: 70, points: 490, startedAt: '01.09.2025' },
+  { id: '3', name: 'Дмитрий', email: 'dmitry@mail.ru', progress: 70, points: 490, startedAt: '01.09.2025' },
+  { id: '4', name: 'Анна', email: 'anna@mail.ru', progress: 70, points: 490, startedAt: '01.09.2025' },
+]
+
+export const curators: Curator[] = [
+  { id: '1', name: 'Василий', email: 'vasya@mail.ru', checkedAnswers: 48, appointedAt: '01.09.2025' },
+  { id: '2', name: 'Анна', email: 'anna@mail.ru', checkedAnswers: 44, appointedAt: '01.09.2025' },
+  { id: '3', name: 'Ирина', email: 'irina@mail.ru', checkedAnswers: 40, appointedAt: '01.09.2025' },
+  { id: '4', name: 'Михаил', email: 'mikhail@mail.ru', checkedAnswers: 38, appointedAt: '01.09.2025' },
+]
+
+export const teacherHomework: TeacherHomework[] = [
+  { id: '1', title: '4. Орфоэпия', status: 'published', points: 10, deadline: '17.12.2025' },
+  { id: '2', title: '12. Правописание Не и Ни', status: 'published', points: 10, deadline: '17.12.2025' },
+  { id: '3', title: '27. Сочинение', status: 'draft', points: 10, deadline: '17.12.2025' },
+]
+
+export const teacherAssignments: TeacherAssignment[] = [
+  { id: '1', title: 'Задание 1. Орфоэпия', type: 'task', checked: 0, total: 120, points: 10 },
+  { id: '2', title: 'Задание 1. Орфоэпия', type: 'homework', checked: 0, total: 120, points: 10 },
+  { id: '3', title: 'Задание 1. Орфоэпия', type: 'task', checked: 0, total: 120, points: 10 },
+]
+
+export const moduleLessons: LessonItem[] = [
+  { id: '1', title: 'Орфография', points: 40 },
+  { id: '2', title: 'Морфология', points: 40 },
+  { id: '3', title: 'Грамматика', points: 40 },
+]
+
+export const sampleTask: Task = {
+  id: 1,
+  title: 'Задание 1',
+  points: 1,
+  instruction:
+    'Установите соответствие между предложениями и названиями изучаемых правил пунктуации: запишите в таблицу под каждым номером соответствующую цифру 1, 2, 3, 4, 5, 6, 7, 8.',
+  content: `(1) Ключевская сопка — типичный стратовулкан, его конус усечён, а у подножия располагаются шлаковые конусы.
+(2) Вулкан Ключевская сопка — один из самых высоких действующих вулканов Евразии.
+(3) Высота вулкана — 4750 метров над уровнем моря.
+(4) Вулкан расположен на востоке Камчатки.
+(5) Извержения вулкана происходят регулярно.
+(6) Последнее извержение было в 2020 году.
+(7) Вулкан является объектом Всемирного наследия ЮНЕСКО.
+(8) Ключевская сопка — символ Камчатки.`,
+}
+
+export const essayTask: Task = {
+  id: 27,
+  title: 'Задание 27. Сочинение',
+  points: 5,
+  type: 'essay',
+  instruction: `Напишите сочинение-рассуждение по проблеме исходного текста «Как влияет на человека природа?»
+
+Сформулируйте позицию автора (запишите одним предложением).
+Сформулируйте и обоснуйте свое отношение к позиции автора (согласие или несогласие).
+Приведите 2 аргумента из личного опыта или литературы.
+Объём сочинения — не менее 150 слов.`,
+  content:
+    'Природа оказывает огромное влияние на человека. Она формирует его характер, воспитывает душу и помогает найти гармонию с самим собой. Когда человек находится на природе, он чувствует себя свободным и счастливым...',
+}
+
+export function formatPrice(price: number): string {
+  return price.toLocaleString('ru-RU') + ' ₽'
+}

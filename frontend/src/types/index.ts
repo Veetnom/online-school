@@ -1,0 +1,123 @@
+export type CourseStatus = 'published' | 'draft'
+export type AssignmentType = 'task' | 'homework'
+export type HomeworkTab = 'todo' | 'submitted' | 'overdue'
+
+export interface Course {
+  id: string
+  title: string
+  instructorName: string
+  instructorAvatar?: string
+  price: number
+  description: string
+  subtitle: string
+  highlights: string[]
+  program: CourseModule[]
+}
+
+export interface CourseModule {
+  id: string
+  title: string
+  lessons?: string[]
+  expanded?: boolean
+}
+
+export interface EnrolledCourse {
+  id: string
+  title: string
+  progress: number
+  pointsEarned: number
+  pointsTotal: number
+  currentTask?: string
+}
+
+export interface HomeworkItem {
+  id: string
+  title: string
+  subject: string
+  daysLeft: number
+  points: number
+  maxPoints: number
+  deadline?: string
+  status: CourseStatus
+}
+
+export interface CartItem {
+  id: string
+  title: string
+  instructorName: string
+  instructorAvatar?: string
+  price: number
+}
+
+export interface ScheduleEvent {
+  id: string
+  date: string
+  title: string
+  color: 'orange' | 'blue' | 'purple' | 'gray'
+  completed?: boolean
+}
+
+export interface ChatMessage {
+  id: string
+  text: string
+  time: string
+  isOwn: boolean
+}
+
+export interface ChatThread {
+  id: string
+  name: string
+  avatar: string
+  lastMessage: string
+  time: string
+  messages: ChatMessage[]
+}
+
+export interface Student {
+  id: string
+  name: string
+  email: string
+  progress: number
+  points: number
+  startedAt: string
+}
+
+export interface Curator {
+  id: string
+  name: string
+  email: string
+  checkedAnswers: number
+  appointedAt: string
+}
+
+export interface TeacherAssignment {
+  id: string
+  title: string
+  type: AssignmentType
+  checked: number
+  total: number
+  points: number
+}
+
+export interface TeacherHomework {
+  id: string
+  title: string
+  status: CourseStatus
+  points: number
+  deadline: string
+}
+
+export interface LessonItem {
+  id: string
+  title: string
+  points: number
+}
+
+export interface Task {
+  id: number
+  title: string
+  points: number
+  instruction: string
+  content?: string
+  type?: 'text' | 'essay'
+}
