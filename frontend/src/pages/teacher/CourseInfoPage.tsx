@@ -11,7 +11,7 @@ export function CourseInfoPage() {
     <div>
       <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
       <div className="mb-6">
-        <CourseTabs courseId={id} />
+        <CourseTabs courseId={id} role="teacher" />
       </div>
 
       <Card>

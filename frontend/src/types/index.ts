@@ -48,8 +48,11 @@ export interface CartItem {
 export interface ScheduleEvent {
   id: string
   date: string
+  time: string
   title: string
   color: 'orange' | 'blue' | 'purple' | 'gray'
+  type: 'homework' | 'exam' | 'event'
+  description?: string
   completed?: boolean
 }
 

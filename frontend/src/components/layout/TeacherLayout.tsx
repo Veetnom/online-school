@@ -8,7 +8,7 @@ export function TeacherLayout() {
       <Header showCart={false} userName="АВ" />
       <div className="flex flex-1 flex-col lg:flex-row">
         <TeacherSidebar />
-        <main className="flex-1 p-4 sm:p-6 lg:p-8">
+        <main className="flex flex-1 flex-col p-4 sm:p-6 lg:p-8">
           <Outlet />
         </main>
       </div>

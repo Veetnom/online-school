@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronRight, Users, X } from 'lucide-react'
+import { ChevronDown, ChevronRight, Search, Users, X } from 'lucide-react'
 import { useState } from 'react'
 import { teacherGroups } from '../../data/mockData'
 import { allStudents } from '../../data/mockCoursesData'
@@ -15,12 +15,19 @@ function EditGroupModal({
   const [selected, setSelected] = useState<string[]>(
     group.students.map((s) => s.id)
   )
+  const [search, setSearch] = useState('')
 
   const toggle = (id: string) => {
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     )
   }
+
+  const filteredStudents = allStudents.filter(
+    (s) =>
+      s.name.toLowerCase().includes(search.toLowerCase()) ||
+      s.email.toLowerCase().includes(search.toLowerCase())
+  )
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4" onClick={onClose}>
@@ -31,21 +38,43 @@ function EditGroupModal({
             <X className="h-5 w-5" />
           </button>
         </div>
-        <div className="max-h-72 space-y-2 overflow-y-auto">
-          {allStudents.map((student) => (
-            <label key={student.id} className="flex cursor-pointer items-center gap-3 rounded-lg p-2 hover:bg-slate-50">
-              <input
-                type="checkbox"
-                checked={selected.includes(student.id)}
-                onChange={() => toggle(student.id)}
-                className="h-4 w-4 rounded border-slate-300 text-blue-600"
-              />
-              <div>
-                <p className="text-sm font-medium text-slate-900">{student.name}</p>
-                <p className="text-xs text-slate-500">{student.email}</p>
-              </div>
-            </label>
-          ))}
+
+        {/* Поиск учеников */}
+        <div className="relative mb-4">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          <input
+            type="text"
+            placeholder="Поиск учеников по имени или email..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-lg border border-slate-300 py-2 pl-9 pr-3 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+          />
+        </div>
+
+        {/* Счётчик выбранных */}
+        <div className="mb-2 text-xs text-slate-500">
+          Выбрано: {selected.length} / {allStudents.length}
+        </div>
+
+        <div className="max-h-72 space-y-1 overflow-y-auto">
+          {filteredStudents.length === 0 ? (
+            <p className="py-4 text-center text-sm text-slate-400">Ничего не найдено</p>
+          ) : (
+            filteredStudents.map((student) => (
+              <label key={student.id} className="flex cursor-pointer items-center gap-3 rounded-lg p-2 hover:bg-slate-50">
+                <input
+                  type="checkbox"
+                  checked={selected.includes(student.id)}
+                  onChange={() => toggle(student.id)}
+                  className="h-4 w-4 rounded border-slate-300 text-blue-600"
+                />
+                <div>
+                  <p className="text-sm font-medium text-slate-900">{student.name}</p>
+                  <p className="text-xs text-slate-500">{student.email}</p>
+                </div>
+              </label>
+            ))
+          )}
         </div>
         <div className="mt-6 flex justify-end gap-3">
           <Button variant="secondary" onClick={onClose}>Отмена</Button>

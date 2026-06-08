@@ -1,17 +1,16 @@
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navItems = [
-  { to: '/teacher/courses/1', label: 'Курсы', prefix: '/teacher/courses' },
+  { to: '/teacher/courses', label: 'Курсы', prefix: '/teacher/courses' },
   { to: '/teacher/checking', label: 'Проверка ответов', prefix: '/teacher/checking' },
   { to: '/teacher/groups', label: 'Группы', prefix: '/teacher/groups' },
-  { to: '/teacher/chat', label: 'Чат с учениками', prefix: '/teacher/chat' },
 ]
 
 export function TeacherSidebar() {
   const { pathname } = useLocation()
 
   return (
-    <aside className="w-full shrink-0 border-r border-slate-200 bg-slate-100 lg:w-56 xl:w-64">
+    <aside className="w-full shrink-0 border-r border-slate-200 bg-white lg:w-56 xl:w-64">
       <nav className="flex flex-row gap-1 overflow-x-auto p-2 lg:flex-col lg:gap-0 lg:p-3">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.prefix)

@@ -8,7 +8,7 @@ export function MethodistSidebar() {
   const { pathname } = useLocation()
 
   return (
-    <aside className="w-full shrink-0 border-r border-slate-200 bg-slate-100 lg:w-56 xl:w-64">
+    <aside className="w-full shrink-0 border-r border-slate-200 bg-white lg:w-56 xl:w-64">
       <nav className="flex flex-row gap-1 overflow-x-auto p-2 lg:flex-col lg:gap-0 lg:p-3">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.prefix)

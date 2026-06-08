@@ -1,0 +1,82 @@
+import { useParams } from 'react-router-dom'
+import { CourseTabs } from '../../components/course/CourseTabs'
+import { Card } from '../../components/ui/Card'
+
+const mockStudents = [
+  { id: '1', name: 'Александр', progress: 70, points: 490 },
+  { id: '2', name: 'Елена', progress: 85, points: 520 },
+  { id: '3', name: 'Дмитрий', progress: 60, points: 380 },
+  { id: '4', name: 'Анна', progress: 90, points: 590 },
+]
+
+const mockTeachers = [
+  { id: '1', name: 'Аля Виноградова', role: 'Преподаватель', email: 'alya@mail.ru' },
+  { id: '2', name: 'Иван Петров', role: 'Преподаватель', email: 'ivan@mail.ru' },
+]
+
+export function CuratorCourseStatisticsPage() {
+  const { id = '1' } = useParams()
+
+  return (
+    <div>
+      <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
+      <div className="mb-6">
+        <CourseTabs courseId={id} role="curator" />
+      </div>
+
+      {/* Ученики */}
+      <h2 className="mb-3 text-lg font-semibold text-slate-900">Ученики</h2>
+      <div className="overflow-hidden rounded-lg border border-slate-200">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-slate-50 text-slate-500">
+            <tr>
+              <th className="px-4 py-3 font-medium">Имя</th>
+              <th className="px-4 py-3 font-medium">Прогресс</th>
+              <th className="px-4 py-3 font-medium">Баллы</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {mockStudents.map((s) => (
+              <tr key={s.id} className="hover:bg-slate-50">
+                <td className="px-4 py-3 text-slate-900">{s.name}</td>
+                <td className="px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-20 overflow-hidden rounded-full bg-slate-100">
+                      <div
+                        className="h-full rounded-full bg-blue-500"
+                        style={{ width: `${s.progress}%` }}
+                      />
+                    </div>
+                    <span className="text-xs text-slate-400">{s.progress}%</span>
+                  </div>
+                </td>
+                <td className="px-4 py-3 text-slate-900">{s.points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Преподаватели */}
+      <h2 className="mb-3 mt-8 text-lg font-semibold text-slate-900">Преподаватели</h2>
+      <div className="space-y-3">
+        {mockTeachers.map((t) => (
+          <Card key={t.id}>
+            <div className="flex items-center gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-sm font-bold text-white">
+                {t.name.charAt(0)}
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="font-medium text-slate-900">{t.name}</p>
+                <p className="text-sm text-slate-500">{t.email}</p>
+              </div>
+              <span className="shrink-0 rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                {t.role}
+              </span>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}

@@ -4,22 +4,22 @@ import { Card } from '../../components/ui/Card'
 import { courseModules } from '../../data/mockCoursesData'
 import { moduleLessons } from '../../data/mockData'
 
-export function CourseStructurePage() {
+export function CuratorCourseStructurePage() {
   const { id = '1', moduleId } = useParams()
 
-  // Если выбран модуль — показываем его уроки
+  // Если выбран модуль — показываем его уроки (read-only)
   if (moduleId) {
     const module = courseModules.find((m) => m.id === moduleId)
     return (
       <div>
         <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
         <div className="mb-6">
-          <CourseTabs courseId={id} role="teacher" />
+          <CourseTabs courseId={id} role="curator" />
         </div>
 
         <div className="mb-4">
           <Link
-            to={`/teacher/courses/${id}/structure`}
+            to={`/curator/courses/${id}/structure`}
             className="text-sm text-blue-600 hover:text-blue-800 transition-colors"
           >
             ← Назад к модулям
@@ -51,18 +51,16 @@ export function CourseStructurePage() {
     <div>
       <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
       <div className="mb-6">
-        <CourseTabs courseId={id} role="teacher" />
+        <CourseTabs courseId={id} role="curator" />
       </div>
 
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-slate-900">Модули курса</h2>
-      </div>
+      <h2 className="text-lg font-semibold text-slate-900">Модули курса</h2>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2">
         {courseModules.map((mod) => (
           <Link
             key={mod.id}
-            to={`/teacher/courses/${id}/structure/${mod.id}`}
+            to={`/curator/courses/${id}/structure/${mod.id}`}
           >
             <Card className="cursor-pointer transition hover:shadow-lg">
               <div className="flex items-center gap-4">

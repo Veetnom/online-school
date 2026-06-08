@@ -1,5 +1,3 @@
-import type { Course } from '../types'
-
 export interface TeacherCourseInfo {
   id: string
   title: string
@@ -13,6 +11,12 @@ export interface MethodistCourseInfo {
   status: 'published' | 'draft'
 }
 
+export interface CourseModule {
+  id: string
+  title: string
+  lessonCount: number
+}
+
 export const teacherCourses: TeacherCourseInfo[] = [
   { id: '1', title: 'Русский язык', studentCount: 25 },
   { id: '2', title: 'Математика', studentCount: 18 },
@@ -22,6 +26,13 @@ export const methodistCourses: MethodistCourseInfo[] = [
   { id: '1', title: 'Русский язык', studentCount: 25, status: 'published' },
   { id: '2', title: 'Математика', studentCount: 18, status: 'published' },
   { id: '3', title: 'Химия', studentCount: 0, status: 'draft' },
+]
+
+export const courseModules: CourseModule[] = [
+  { id: 'm1', title: 'Модуль 1. Орфография', lessonCount: 6 },
+  { id: 'm2', title: 'Модуль 2. Пунктуация', lessonCount: 8 },
+  { id: 'm3', title: 'Модуль 3. Морфология', lessonCount: 5 },
+  { id: 'm4', title: 'Модуль 4. Сочинение', lessonCount: 4 },
 ]
 
 export const allStudents = [

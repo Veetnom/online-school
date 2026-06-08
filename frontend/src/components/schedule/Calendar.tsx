@@ -7,6 +7,7 @@ interface CalendarProps {
   events: ScheduleEvent[]
   month?: number
   year?: number
+  onEventClick?: (event: ScheduleEvent) => void
 }
 
 const WEEKDAYS = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
@@ -31,7 +32,7 @@ function getFirstDayOfMonth(year: number, month: number) {
   return day === 0 ? 6 : day - 1
 }
 
-export function Calendar({ events, month = 3, year = 2026 }: CalendarProps) {
+export function Calendar({ events, month = 3, year = 2026, onEventClick }: CalendarProps) {
   const [currentMonth, setCurrentMonth] = useState(month)
   const [currentYear, setCurrentYear] = useState(year)
 
@@ -133,6 +134,7 @@ export function Calendar({ events, month = 3, year = 2026 }: CalendarProps) {
             {cells.map((cell, idx) => {
               const dayEvents = eventsByDate[cell.dateStr] || []
               const isSelected = cell.dateStr === '2026-04-01'
+              const isToday = cell.dateStr === '2026-04-01'
               return (
                 <div
                   key={idx}
@@ -140,14 +142,22 @@ export function Calendar({ events, month = 3, year = 2026 }: CalendarProps) {
                     cell.isCurrentMonth ? 'bg-white' : 'bg-slate-50'
                   } ${isSelected ? 'ring-1 ring-inset ring-slate-400' : ''}`}
                 >
-                  <div className="mb-1 text-center text-sm text-slate-600">{cell.day}</div>
+                  <div className={`mb-1 text-center text-sm ${
+                    isToday ? 'font-bold text-blue-600' : 'text-slate-600'
+                  }`}>
+                    {cell.day}
+                  </div>
                   <div className="space-y-1">
                     {dayEvents.slice(0, 2).map((ev) => (
-                      <div key={ev.id} className="flex items-center gap-1">
+                      <div
+                        key={ev.id}
+                        className={`flex items-center gap-1 ${onEventClick ? 'cursor-pointer' : ''}`}
+                        onClick={() => onEventClick?.(ev)}
+                      >
                         <Badge variant={badgeVariantMap[ev.color]}>
-                          <span className="flex items-center gap-1">
+                          <span className="flex items-center gap-1 truncate max-w-[120px]">
                             • {ev.title}
-                            {ev.completed && <Check className="h-3 w-3" />}
+                            {ev.completed && <Check className="h-3 w-3 shrink-0" />}
                           </span>
                         </Badge>
                       </div>

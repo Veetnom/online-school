@@ -9,6 +9,7 @@ import { MethodistCourseInfoPage } from './pages/methodist/MethodistCourseInfoPa
 import { MethodistCourseListPage } from './pages/methodist/MethodistCourseListPage'
 import { MethodistCourseStatisticsPage } from './pages/methodist/MethodistCourseStatisticsPage'
 import { MethodistCourseStructurePage } from './pages/methodist/MethodistCourseStructurePage'
+import { MethodistCourseTeachersPage } from './pages/methodist/MethodistCourseTeachersPage'
 import { CartPage } from './pages/student/CartPage'
 import { CourseDetailPage } from './pages/student/CourseDetailPage'
 import { CourseLearningPage } from './pages/student/CourseLearningPage'
@@ -25,7 +26,11 @@ import { CourseInfoPage } from './pages/teacher/CourseInfoPage'
 import { CourseStatisticsPage } from './pages/teacher/CourseStatisticsPage'
 import { CourseStructurePage } from './pages/teacher/CourseStructurePage'
 import { EssayGradingPage } from './pages/teacher/EssayGradingPage'
-import { TeacherChatPage } from './pages/teacher/TeacherChatPage'
+import { CuratorChatPage } from './pages/curator/CuratorChatPage'
+import { CuratorCourseInfoPage } from './pages/curator/CuratorCourseInfoPage'
+import { CuratorCourseListPage } from './pages/curator/CuratorCourseListPage'
+import { CuratorCourseStatisticsPage } from './pages/curator/CuratorCourseStatisticsPage'
+import { CuratorCourseStructurePage } from './pages/curator/CuratorCourseStructurePage'
 import { TeacherCheckingPage } from './pages/teacher/TeacherCheckingPage'
 import { TeacherCourseListPage } from './pages/teacher/TeacherCourseListPage'
 
@@ -51,12 +56,13 @@ export default function App() {
           <Route path="/teacher/courses" element={<TeacherCourseListPage />} />
           <Route path="/teacher/courses/:id" element={<CourseInfoPage />} />
           <Route path="/teacher/courses/:id/structure" element={<CourseStructurePage />} />
+          <Route path="/teacher/courses/:id/structure/:moduleId" element={<CourseStructurePage />} />
           <Route path="/teacher/courses/:id/homework" element={<CourseHomeworkPage />} />
           <Route path="/teacher/courses/:id/statistics" element={<CourseStatisticsPage />} />
           <Route path="/teacher/courses/:id/checking" element={<CourseCheckingPage />} />
+          <Route path="/teacher/courses/:id/checking/:assignmentId" element={<CourseCheckingPage />} />
           <Route path="/teacher/checking" element={<TeacherCheckingPage />} />
           <Route path="/teacher/checking/:id" element={<EssayGradingPage />} />
-          <Route path="/teacher/chat" element={<TeacherChatPage />} />
           <Route path="/teacher/groups" element={<TeacherGroupsPage />} />
         </Route>
 
@@ -65,11 +71,16 @@ export default function App() {
           <Route path="/methodist/courses/:id" element={<MethodistCourseInfoPage />} />
           <Route path="/methodist/courses/:id/structure" element={<MethodistCourseStructurePage />} />
           <Route path="/methodist/courses/:id/homework" element={<MethodistCourseHomeworkPage />} />
+          <Route path="/methodist/courses/:id/teachers" element={<MethodistCourseTeachersPage />} />
           <Route path="/methodist/courses/:id/statistics" element={<MethodistCourseStatisticsPage />} />
         </Route>
 
         <Route element={<CuratorLayout />}>
-          <Route path="/curator/chat" element={<TeacherChatPage />} />
+          <Route path="/curator/courses" element={<CuratorCourseListPage />} />
+          <Route path="/curator/courses/:id" element={<CuratorCourseInfoPage />} />
+          <Route path="/curator/courses/:id/structure" element={<CuratorCourseStructurePage />} />
+          <Route path="/curator/courses/:id/statistics" element={<CuratorCourseStatisticsPage />} />
+          <Route path="/curator/chat" element={<CuratorChatPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

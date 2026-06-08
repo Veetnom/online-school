@@ -2,7 +2,7 @@ import { Tabs } from '../ui/Tabs'
 
 interface CourseTabsProps {
   courseId: string
-  role: 'teacher' | 'methodist'
+  role: 'teacher' | 'methodist' | 'curator'
 }
 
 export function CourseTabs({ courseId, role }: CourseTabsProps) {
@@ -18,11 +18,25 @@ export function CourseTabs({ courseId, role }: CourseTabsProps) {
     return <Tabs tabs={tabs} />
   }
 
-  const tabs = [
-    { label: 'Информация о курсе', to: base },
-    { label: 'Структура курса', to: `${base}/structure` },
-    { label: 'Домашние работы', to: `${base}/homework` },
-    { label: 'Статистика', to: `${base}/statistics` },
-  ]
-  return <Tabs tabs={tabs} />
+  if (role === 'methodist') {
+    const tabs = [
+      { label: 'Информация о курсе', to: base },
+      { label: 'Структура курса', to: `${base}/structure` },
+      { label: 'Домашние работы', to: `${base}/homework` },
+      { label: 'Статистика', to: `${base}/statistics` },
+      { label: 'Преподаватели', to: `${base}/teachers` },
+    ]
+    return <Tabs tabs={tabs} />
+  }
+
+  if (role === 'curator') {
+    const tabs = [
+      { label: 'Информация о курсе', to: base },
+      { label: 'Структура курса', to: `${base}/structure` },
+      { label: 'Статистика', to: `${base}/statistics` },
+    ]
+    return <Tabs tabs={tabs} />
+  }
+
+  return null
 }

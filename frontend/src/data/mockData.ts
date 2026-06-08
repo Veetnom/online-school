@@ -155,21 +155,30 @@ export const scheduleEvents: ScheduleEvent[] = [
   {
     id: '1',
     date: '2026-03-31',
+    time: '10:00',
     title: 'Информатика - Алгебра лог...',
     color: 'gray',
+    type: 'homework',
+    description: 'Сдать домашнее задание по теме "Алгебра логики"',
     completed: true,
   },
   {
     id: '2',
     date: '2026-04-01',
+    time: '14:00',
     title: 'Русский язык - Орфоэпия',
     color: 'orange',
+    type: 'homework',
+    description: 'Выучить орфоэпические нормы, выполнить упражнения',
   },
   {
     id: '3',
     date: '2026-04-01',
+    time: '16:00',
     title: 'Математика - Планиметрия',
     color: 'blue',
+    type: 'exam',
+    description: 'Пробный экзамен по планиметрии',
   },
 ]
 

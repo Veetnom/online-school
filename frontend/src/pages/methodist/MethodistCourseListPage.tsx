@@ -5,29 +5,66 @@ import { methodistCourses } from '../../data/mockCoursesData'
 export function MethodistCourseListPage() {
   return (
     <div>
-      <h1 className="mb-6 text-2xl font-bold text-slate-900 sm:text-3xl">Курсы</h1>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {methodistCourses.map((course) => (
-          <Link key={course.id} to={`/methodist/courses/${course.id}`}>
-            <Card className="cursor-pointer transition hover:shadow-md">
-              <div className="flex items-start justify-between gap-2">
-                <h3 className="text-lg font-semibold text-slate-900">{course.title}</h3>
-                <span
-                  className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    course.status === 'published'
-                      ? 'bg-green-100 text-green-700'
-                      : 'bg-yellow-100 text-yellow-700'
-                  }`}
-                >
-                  {course.status === 'published' ? 'Опубликован' : 'Черновик'}
-                </span>
-              </div>
-              <p className="mt-1 text-sm text-slate-500">
-                {course.studentCount} {course.studentCount === 1 ? 'ученик' : 'учеников'}
-              </p>
-            </Card>
-          </Link>
-        ))}
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">Курсы</h1>
+        <button
+          type="button"
+          className="rounded-lg bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800"
+        >
+          Создать курс
+        </button>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
+        {methodistCourses.map((course) => {
+          const colorMap: Record<string, string> = {
+            published: 'bg-green-100 text-green-700',
+            draft: 'bg-yellow-100 text-yellow-700',
+          }
+          const labelMap: Record<string, string> = {
+            published: 'Опубликован',
+            draft: 'Черновик',
+          }
+          return (
+            <Link key={course.id} to={`/methodist/courses/${course.id}`}>
+              <Card className="group cursor-pointer transition hover:shadow-lg">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xl font-bold text-white shadow-sm">
+                    {course.title.charAt(0)}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="text-lg font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                        {course.title}
+                      </h3>
+                      <span
+                        className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                          colorMap[course.status]
+                        }`}
+                      >
+                        {labelMap[course.status]}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-slate-500">
+                      {course.studentCount} {course.studentCount === 1 ? 'ученик' : 'учеников'}
+                    </p>
+                    <div className="mt-3 flex items-center gap-2">
+                      <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
+                        <div
+                          className="h-full rounded-full bg-emerald-500"
+                          style={{ width: `${Math.min((course.studentCount / 30) * 100, 100)}%` }}
+                        />
+                      </div>
+                      <span className="text-xs text-slate-400">
+                        {Math.round(Math.min((course.studentCount / 30) * 100, 100))}%
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </Link>
+          )
+        })}
       </div>
     </div>
   )
