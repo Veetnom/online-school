@@ -24,7 +24,7 @@ export function MethodistCourseStatisticsPage() {
         <ToggleButtons
           options={[
             { value: 'students', label: 'Ученики' },
-            { value: 'curators', label: 'Кураторы' },
+            { value: 'teachers', label: 'Преподаватели' },
           ]}
           value={view}
           onChange={setView}
@@ -32,7 +32,7 @@ export function MethodistCourseStatisticsPage() {
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="text-lg font-semibold text-slate-900">
-            {view === 'students' ? 'Ученики курса' : 'Кураторы курса'}
+            {view === 'students' ? 'Ученики курса' : 'Преподаватели курса'}
           </h2>
           <SearchInput className="w-full sm:max-w-xs" />
         </div>
@@ -45,9 +45,9 @@ export function MethodistCourseStatisticsPage() {
           )}
         </div>
 
-        {view === 'curators' && (
+        {view === 'teachers' && (
           <div className="mt-6 flex justify-end">
-            <Button variant="primary">Добавить куратора</Button>
+            <Button variant="primary">Добавить преподавателя</Button>
           </div>
         )}
       </Card>

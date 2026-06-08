@@ -24,12 +24,20 @@ export function MethodistCourseTeachersPage() {
         <CourseTabs courseId={id} role="methodist" />
       </div>
 
-      {/* Преподаватели */}
-      <div className="mb-8">
-        <div className="mb-4 flex items-center justify-between">
+      {/* Команда курса */}
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold text-slate-900">Команда курса</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          Преподаватели и ассистенты, работающие с курсом
+        </p>
+      </div>
+
+      {/* Преподаватели (лекции и семинары) */}
+      <div className="mb-6">
+        <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <GraduationCap className="h-5 w-5 text-blue-600" />
-            <h2 className="text-lg font-semibold text-slate-900">Преподаватели</h2>
+            <h3 className="text-sm font-semibold text-slate-900">Преподаватели</h3>
           </div>
           <Button variant="blue" size="sm">Добавить преподавателя</Button>
         </div>
@@ -56,14 +64,14 @@ export function MethodistCourseTeachersPage() {
         </div>
       </div>
 
-      {/* Кураторы */}
+      {/* Преподаватели (проверка работ) */}
       <div>
-        <div className="mb-4 flex items-center justify-between">
+        <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <UserCheck className="h-5 w-5 text-violet-600" />
-            <h2 className="text-lg font-semibold text-slate-900">Кураторы</h2>
+            <h3 className="text-sm font-semibold text-slate-900">Преподаватели (проверка работ)</h3>
           </div>
-          <Button variant="purple" size="sm">Добавить куратора</Button>
+          <Button variant="purple" size="sm">Добавить преподавателя</Button>
         </div>
         <div className="space-y-3">
           {mockCurators.map((person) => (

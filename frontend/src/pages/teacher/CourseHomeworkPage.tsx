@@ -36,9 +36,6 @@ export function CourseHomeworkPage() {
           ))}
         </div>
 
-        <div className="mt-6 flex justify-end">
-          <Button variant="purple">Добавить задание</Button>
-        </div>
       </Card>
     </div>
   )

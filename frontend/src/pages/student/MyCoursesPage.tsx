@@ -1,13 +1,32 @@
-import { EnrolledCourseCard } from '../../components/course/EnrolledCourseCard'
+import { Link } from 'react-router-dom'
+import { Card } from '../../components/ui/Card'
+import { ProgressBar } from '../../components/ui/ProgressBar'
 import { enrolledCourses } from '../../data/mockData'
 
 export function MyCoursesPage() {
   return (
     <div>
       <h1 className="mb-6 text-2xl font-bold text-slate-900 sm:text-3xl">Мои курсы</h1>
-      <div className="space-y-4">
+      <div className="grid gap-5 lg:grid-cols-2">
         {enrolledCourses.map((course) => (
-          <EnrolledCourseCard key={course.id} course={course} />
+          <Link key={course.id} to={`/my-courses/${course.id}`}>
+            <Card className="group cursor-pointer transition hover:shadow-lg">
+              <div className="flex items-start gap-4">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-xl font-bold text-white shadow-sm">
+                  {course.title.charAt(0)}
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-lg font-semibold text-slate-900 group-hover:text-emerald-600 transition-colors">
+                    {course.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    {course.progress}% материалов пройдено
+                  </p>
+                  <ProgressBar value={course.progress} className="mt-2" />
+                </div>
+              </div>
+            </Card>
+          </Link>
         ))}
       </div>
     </div>

@@ -48,17 +48,6 @@ export function MethodistCourseListPage() {
                     <p className="mt-1 text-sm text-slate-500">
                       {course.studentCount} {course.studentCount === 1 ? 'ученик' : 'учеников'}
                     </p>
-                    <div className="mt-3 flex items-center gap-2">
-                      <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
-                        <div
-                          className="h-full rounded-full bg-emerald-500"
-                          style={{ width: `${Math.min((course.studentCount / 30) * 100, 100)}%` }}
-                        />
-                      </div>
-                      <span className="text-xs text-slate-400">
-                        {Math.round(Math.min((course.studentCount / 30) * 100, 100))}%
-                      </span>
-                    </div>
                   </div>
                 </div>
               </Card>

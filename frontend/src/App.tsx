@@ -25,7 +25,6 @@ import { CourseHomeworkPage } from './pages/teacher/CourseHomeworkPage'
 import { CourseInfoPage } from './pages/teacher/CourseInfoPage'
 import { CourseStatisticsPage } from './pages/teacher/CourseStatisticsPage'
 import { CourseStructurePage } from './pages/teacher/CourseStructurePage'
-import { EssayGradingPage } from './pages/teacher/EssayGradingPage'
 import { CuratorChatPage } from './pages/curator/CuratorChatPage'
 import { CuratorCourseInfoPage } from './pages/curator/CuratorCourseInfoPage'
 import { CuratorCourseListPage } from './pages/curator/CuratorCourseListPage'
@@ -61,8 +60,10 @@ export default function App() {
           <Route path="/teacher/courses/:id/statistics" element={<CourseStatisticsPage />} />
           <Route path="/teacher/courses/:id/checking" element={<CourseCheckingPage />} />
           <Route path="/teacher/courses/:id/checking/:assignmentId" element={<CourseCheckingPage />} />
+          <Route path="/teacher/courses/:id/checking/:assignmentId/:submissionId" element={<CourseCheckingPage />} />
           <Route path="/teacher/checking" element={<TeacherCheckingPage />} />
-          <Route path="/teacher/checking/:id" element={<EssayGradingPage />} />
+          <Route path="/teacher/checking/:assignmentId" element={<TeacherCheckingPage />} />
+          <Route path="/teacher/checking/:assignmentId/:submissionId" element={<TeacherCheckingPage />} />
           <Route path="/teacher/groups" element={<TeacherGroupsPage />} />
         </Route>
 

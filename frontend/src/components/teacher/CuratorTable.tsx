@@ -13,10 +13,10 @@ export function CuratorTable({ curators }: CuratorTableProps) {
         <thead>
           <tr className="border-b border-slate-200 bg-slate-50">
             <th className="px-4 py-3 font-medium text-slate-600">#</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Куратор</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Преподаватель</th>
             <th className="px-4 py-3 font-medium text-slate-600">Email</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Проверил ответов</th>
-            <th className="px-4 py-3 font-medium text-slate-600">Назначен куратором</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Проверил работ</th>
+            <th className="px-4 py-3 font-medium text-slate-600">Назначен преподавателем</th>
             <th className="px-4 py-3" />
           </tr>
         </thead>
