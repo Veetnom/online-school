@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { CourseTabs } from '../../components/course/CourseTabs'
 import { HomeworkManageCard } from '../../components/teacher/HomeworkManageCard'
-import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
 import { SearchInput } from '../../components/ui/SearchInput'
 import { Select } from '../../components/ui/Select'

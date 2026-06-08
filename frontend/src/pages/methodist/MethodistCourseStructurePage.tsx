@@ -49,9 +49,12 @@ export function MethodistCourseStructurePage() {
                     <p className="font-medium text-slate-900">{lesson.title}</p>
                     <p className="text-sm text-slate-500">{lesson.points} баллов</p>
                   </div>
-                  <Button variant="secondary" size="sm">
+                  <Link
+                    to={`/methodist/courses/${id}/lessons/${lesson.id}/edit`}
+                    className="inline-flex items-center justify-center rounded-lg bg-slate-200 px-3 py-1.5 text-sm font-medium text-slate-900 transition-colors hover:bg-slate-300"
+                  >
                     Редактировать
-                  </Button>
+                  </Link>
                   <button
                     type="button"
                     className="rounded p-1 text-slate-400 hover:bg-slate-100"

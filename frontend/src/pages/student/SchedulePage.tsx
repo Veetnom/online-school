@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Calendar } from '../../components/schedule/Calendar'
-import { Card } from '../../components/ui/Card'
 import { Button } from '../../components/ui/Button'
 import { scheduleEvents } from '../../data/mockData'
 import { X, CalendarDays, Clock } from 'lucide-react'

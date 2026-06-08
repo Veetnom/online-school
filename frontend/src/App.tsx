@@ -32,6 +32,9 @@ import { CuratorCourseStatisticsPage } from './pages/curator/CuratorCourseStatis
 import { CuratorCourseStructurePage } from './pages/curator/CuratorCourseStructurePage'
 import { TeacherCheckingPage } from './pages/teacher/TeacherCheckingPage'
 import { TeacherCourseListPage } from './pages/teacher/TeacherCourseListPage'
+import { TeacherLessonViewPage } from './pages/teacher/TeacherLessonViewPage'
+import { EditorLayout } from './components/layout/EditorLayout'
+import { MethodistLessonEditorPage } from './pages/methodist/MethodistLessonEditorPage'
 
 export default function App() {
   return (
@@ -64,6 +67,7 @@ export default function App() {
           <Route path="/teacher/checking" element={<TeacherCheckingPage />} />
           <Route path="/teacher/checking/:assignmentId" element={<TeacherCheckingPage />} />
           <Route path="/teacher/checking/:assignmentId/:submissionId" element={<TeacherCheckingPage />} />
+          <Route path="/teacher/courses/:id/lessons/:lessonId/view" element={<TeacherLessonViewPage />} />
           <Route path="/teacher/groups" element={<TeacherGroupsPage />} />
         </Route>
 
@@ -71,9 +75,14 @@ export default function App() {
           <Route path="/methodist/courses" element={<MethodistCourseListPage />} />
           <Route path="/methodist/courses/:id" element={<MethodistCourseInfoPage />} />
           <Route path="/methodist/courses/:id/structure" element={<MethodistCourseStructurePage />} />
+          <Route path="/methodist/courses/:id/structure/:moduleId" element={<MethodistCourseStructurePage />} />
           <Route path="/methodist/courses/:id/homework" element={<MethodistCourseHomeworkPage />} />
           <Route path="/methodist/courses/:id/teachers" element={<MethodistCourseTeachersPage />} />
           <Route path="/methodist/courses/:id/statistics" element={<MethodistCourseStatisticsPage />} />
+        </Route>
+
+        <Route element={<EditorLayout />}>
+          <Route path="/methodist/courses/:courseId/lessons/:lessonId/edit" element={<MethodistLessonEditorPage />} />
         </Route>
 
         <Route element={<CuratorLayout />}>
