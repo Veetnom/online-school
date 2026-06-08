@@ -1,7 +1,6 @@
 import { X } from 'lucide-react'
 import { formatPrice } from '../../data/mockData'
 import type { CartItem } from '../../types'
-import { Avatar } from '../ui/Avatar'
 import { Button } from '../ui/Button'
 import { Card } from '../ui/Card'
 
@@ -25,10 +24,6 @@ export function CartItemCard({ item, onRemove }: CartItemCardProps) {
         </button>
       </div>
       <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <Avatar name={item.instructorName} size="sm" />
-          <span className="text-sm text-slate-600">{item.instructorName}</span>
-        </div>
         <span className="text-xl font-bold text-slate-900">{formatPrice(item.price)}</span>
       </div>
       <div className="mt-4 flex justify-end">

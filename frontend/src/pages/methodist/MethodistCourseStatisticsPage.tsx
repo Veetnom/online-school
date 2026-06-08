@@ -9,7 +9,7 @@ import { SearchInput } from '../../components/ui/SearchInput'
 import { ToggleButtons } from '../../components/ui/ToggleButtons'
 import { curators, students } from '../../data/mockData'
 
-export function CourseStatisticsPage() {
+export function MethodistCourseStatisticsPage() {
   const { id = '1' } = useParams()
   const [view, setView] = useState('students')
 
@@ -17,7 +17,7 @@ export function CourseStatisticsPage() {
     <div>
       <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
       <div className="mb-6">
-        <CourseTabs courseId={id} role="teacher" />
+        <CourseTabs courseId={id} role="methodist" />
       </div>
 
       <Card>

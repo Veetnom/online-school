@@ -12,13 +12,25 @@ export function HomePage() {
             to="/store"
             className="rounded-lg bg-violet-600 px-4 py-3 font-medium text-white transition hover:bg-violet-700"
           >
-            Кабинет ученика
+            Ученик
           </Link>
           <Link
-            to="/teacher/courses/1"
+            to="/teacher/courses"
             className="rounded-lg bg-slate-900 px-4 py-3 font-medium text-white transition hover:bg-slate-800"
           >
-            Кабинет преподавателя
+            Преподаватель
+          </Link>
+          <Link
+            to="/methodist/courses"
+            className="rounded-lg bg-blue-600 px-4 py-3 font-medium text-white transition hover:bg-blue-700"
+          >
+            Методист
+          </Link>
+          <Link
+            to="/curator/chat"
+            className="rounded-lg bg-green-700 px-4 py-3 font-medium text-white transition hover:bg-green-800"
+          >
+            Куратор
           </Link>
         </div>
       </Card>

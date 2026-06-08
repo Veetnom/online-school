@@ -7,14 +7,14 @@ import { SearchInput } from '../../components/ui/SearchInput'
 import { Select } from '../../components/ui/Select'
 import { teacherHomework } from '../../data/mockData'
 
-export function CourseHomeworkPage() {
+export function MethodistCourseHomeworkPage() {
   const { id = '1' } = useParams()
 
   return (
     <div>
       <h1 className="mb-4 text-2xl font-bold text-slate-900 sm:text-3xl">Название курса</h1>
       <div className="mb-6">
-        <CourseTabs courseId={id} role="teacher" />
+        <CourseTabs courseId={id} role="methodist" />
       </div>
 
       <Card>

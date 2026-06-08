@@ -1,13 +1,10 @@
 import { NavLink, useLocation } from 'react-router-dom'
 
 const navItems = [
-  { to: '/teacher/courses/1', label: 'Курсы', prefix: '/teacher/courses' },
-  { to: '/teacher/checking', label: 'Проверка ответов', prefix: '/teacher/checking' },
-  { to: '/teacher/groups', label: 'Группы', prefix: '/teacher/groups' },
-  { to: '/teacher/chat', label: 'Чат с учениками', prefix: '/teacher/chat' },
+  { to: '/curator/chat', label: 'Чат с учениками', prefix: '/curator/chat' },
 ]
 
-export function TeacherSidebar() {
+export function CuratorSidebar() {
   const { pathname } = useLocation()
 
   return (

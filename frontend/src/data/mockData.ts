@@ -10,6 +10,7 @@ import type {
   Student,
   Task,
   TeacherAssignment,
+  TeacherGroup,
   TeacherHomework,
 } from '../types'
 
@@ -17,7 +18,6 @@ export const storeCourses: Course[] = [
   {
     id: '1',
     title: 'Русский язык',
-    instructorName: 'Аля Виноградова',
     price: 24165,
     subtitle:
       'Основной курс 3.0 — это комплексная система подготовки к ЕГЭ по русскому языку на максимум!',
@@ -43,7 +43,6 @@ export const storeCourses: Course[] = [
   {
     id: '2',
     title: 'Математика',
-    instructorName: 'Аля Виноградова',
     price: 24165,
     subtitle: 'Подготовка к ЕГЭ по математике профильного уровня',
     description: 'Комплексная подготовка к ЕГЭ по математике.',
@@ -56,7 +55,6 @@ export const storeCourses: Course[] = [
   {
     id: '3',
     title: 'Химия',
-    instructorName: 'Аля Виноградова',
     price: 24165,
     subtitle: 'Подготовка к ЕГЭ по химии',
     description: 'Комплексная подготовка к ЕГЭ по химии.',
@@ -66,7 +64,6 @@ export const storeCourses: Course[] = [
   {
     id: '4',
     title: 'Информатика',
-    instructorName: 'Аля Виноградова',
     price: 24165,
     subtitle: 'Подготовка к ЕГЭ по информатике',
     description: 'Комплексная подготовка к ЕГЭ по информатике.',
@@ -115,7 +112,7 @@ export const homeworkItems: HomeworkItem[] = [
   {
     id: '3',
     title: '12. Правописание Не и Ни',
-    subject: 'Русский Язык бля',
+    subject: 'Русский Язык',
     daysLeft: 7,
     points: 0,
     maxPoints: 10,
@@ -145,13 +142,11 @@ export const cartItems: CartItem[] = [
   {
     id: 'history',
     title: 'История',
-    instructorName: 'Аля Виноградова',
     price: 24165,
   },
   {
     id: 'russian',
     title: 'Русский язык',
-    instructorName: 'Аля Виноградова',
     price: 24165,
   },
 ]
@@ -210,10 +205,39 @@ export const students: Student[] = [
 ]
 
 export const curators: Curator[] = [
-  { id: '1', name: 'Василий', email: 'vasya@mail.ru', checkedAnswers: 48, appointedAt: '01.09.2025' },
-  { id: '2', name: 'Анна', email: 'anna@mail.ru', checkedAnswers: 44, appointedAt: '01.09.2025' },
-  { id: '3', name: 'Ирина', email: 'irina@mail.ru', checkedAnswers: 40, appointedAt: '01.09.2025' },
-  { id: '4', name: 'Михаил', email: 'mikhail@mail.ru', checkedAnswers: 38, appointedAt: '01.09.2025' },
+  { id: '1', name: 'Мария', email: 'maria@school.ru', checkedAnswers: 45, appointedAt: '01.09.2025' },
+  { id: '2', name: 'Анна', email: 'anna@school.ru', checkedAnswers: 32, appointedAt: '01.09.2025' },
+]
+
+export const teacherGroups: TeacherGroup[] = [
+  {
+    id: '1',
+    title: 'Русский язык — группа А',
+    courseTitle: 'Русский язык',
+    students: [
+      { id: '1', name: 'Александр', email: 'alex@mail.ru', progress: 70, points: 490 },
+      { id: '2', name: 'Елена', email: 'elena@mail.ru', progress: 85, points: 520 },
+      { id: '3', name: 'Дмитрий', email: 'dmitry@mail.ru', progress: 60, points: 380 },
+    ],
+  },
+  {
+    id: '2',
+    title: 'Русский язык — группа Б',
+    courseTitle: 'Русский язык',
+    students: [
+      { id: '4', name: 'Анна', email: 'anna@mail.ru', progress: 90, points: 590 },
+      { id: '5', name: 'Иван', email: 'ivan@mail.ru', progress: 45, points: 290 },
+    ],
+  },
+  {
+    id: '3',
+    title: 'Математика — группа А',
+    courseTitle: 'Математика',
+    students: [
+      { id: '6', name: 'Ольга', email: 'olga@mail.ru', progress: 55, points: 340 },
+      { id: '7', name: 'Пётр', email: 'petr@mail.ru', progress: 75, points: 470 },
+    ],
+  },
 ]
 
 export const teacherHomework: TeacherHomework[] = [

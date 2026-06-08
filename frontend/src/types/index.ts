@@ -5,8 +5,6 @@ export type HomeworkTab = 'todo' | 'submitted' | 'overdue'
 export interface Course {
   id: string
   title: string
-  instructorName: string
-  instructorAvatar?: string
   price: number
   description: string
   subtitle: string
@@ -44,8 +42,6 @@ export interface HomeworkItem {
 export interface CartItem {
   id: string
   title: string
-  instructorName: string
-  instructorAvatar?: string
   price: number
 }
 
@@ -120,4 +116,19 @@ export interface Task {
   instruction: string
   content?: string
   type?: 'text' | 'essay'
+}
+
+export interface TeacherGroup {
+  id: string
+  title: string
+  courseTitle: string
+  students: StudentInGroup[]
+}
+
+export interface StudentInGroup {
+  id: string
+  name: string
+  email: string
+  progress: number
+  points: number
 }
