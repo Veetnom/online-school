@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export function Header({ showCart = true, userName = 'ЭМ' }: HeaderProps) {
   return (
-    <header className="flex h-14 shrink-0 items-center justify-end gap-3 border-b border-slate-200 bg-white px-4 sm:px-6 lg:px-8">
+    <header className="flex h-14 shrink-0 items-center justify-end gap-3 border-b border-slate-200 bg-white px-4 sm:px-6">
       <button
         type="button"
         className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100"
