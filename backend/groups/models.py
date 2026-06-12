@@ -15,17 +15,17 @@ class Group(models.Model):
         return self.title
 
 
-class GroupTeacher(models.Model):
-    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='group_teachers')
-    teacher = models.ForeignKey('users.User', on_delete=models.PROTECT, related_name='teaching_groups')
+class GroupTeamMember(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='team_members')
+    course_team_member = models.ForeignKey('courses.CourseTeamMember', on_delete=models.PROTECT, related_name='group_memberships')
 
     class Meta:
-        verbose_name = 'Преподаватель группы'
-        verbose_name_plural = 'Преподаватели групп'
-        unique_together = ('group', 'teacher')
+        verbose_name = 'Сотрудник группы'
+        verbose_name_plural = 'Сотрудники групп'
+        unique_together = ('group', 'course_team_member')
 
     def __str__(self) -> str:
-        return f'{self.teacher} -> {self.group}'
+        return f'{self.course_team_member} -> {self.group}'
 
 
 class Enrollment(models.Model):

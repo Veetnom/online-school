@@ -14,9 +14,12 @@ __pycache__/
 .clineignore
 .clinerules
 
+node_modules/
+
 .env
 
 media/
 
 frontend/node_modules/
 frontend/dist/
+_metadata.json

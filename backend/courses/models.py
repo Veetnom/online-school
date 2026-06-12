@@ -22,19 +22,18 @@ class Course(models.Model):
         return self.title
 
 
-class CourseMethodologist(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='methodologists')
-    methodologist = models.ForeignKey('users.User', on_delete=models.PROTECT, related_name='authored_courses')
+class CourseTeamMember(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='team_members')
+    user = models.ForeignKey('users.User', on_delete=models.PROTECT, related_name='course_memberships')
     assigned_at = models.DateField(auto_now_add=True)
 
     class Meta:
-        verbose_name = 'Методист курса'
-        verbose_name_plural = 'Методисты курсов'
-        unique_together = ('course', 'methodologist')
+        verbose_name = 'Сотрудник курса'
+        verbose_name_plural = 'Сотрудники курсов'
+        unique_together = ('course', 'user')
 
     def __str__(self) -> str:
-        return f'{self.methodologist} -> {self.course}'
-
+        return f'{self.user} -> {self.course}'
 
 class Module(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='modules')
