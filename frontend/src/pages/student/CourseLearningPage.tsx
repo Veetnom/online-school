@@ -1,25 +1,27 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { BookOpen, Calendar, Target } from 'lucide-react'
 import { HomeworkCard } from '../../components/homework/HomeworkCard'
-import { Accordion } from '../../components/ui/Accordion'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
 import { ProgressBar } from '../../components/ui/ProgressBar'
-import { enrolledCourses, homeworkItems } from '../../data/mockData'
+import {
+  enrolledCourses,
+  homeworkItems,
+  homeworkTabItems,
+  studentModuleLessonsByModuleId,
+  studentModuleProgress,
+} from '../../data/mockData'
 import type { HomeworkTab } from '../../types'
-
-const homeworkTabs: { value: HomeworkTab; label: string }[] = [
-  { value: 'todo', label: 'Надо сдать' },
-  { value: 'submitted', label: 'Сданы' },
-  { value: 'overdue', label: 'Просрочены' },
-]
 
 export function CourseLearningPage() {
   const course = enrolledCourses[0]
   const [hwTab, setHwTab] = useState<HomeworkTab>('todo')
+  const [expandedModuleId, setExpandedModuleId] = useState<string | null>(null)
 
   return (
     <div className="space-y-8">
+      {/* Шапка курса */}
       <div>
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">{course.title}</h1>
         <p className="mt-2 text-sm text-slate-500">{course.progress}% материалов пройдено</p>
@@ -40,10 +42,11 @@ export function CourseLearningPage() {
         </Card>
       )}
 
+      {/* Домашние работы */}
       <section>
         <h2 className="mb-4 text-xl font-semibold text-slate-900">Домашние работы</h2>
         <div className="mb-4 flex flex-wrap gap-2">
-          {homeworkTabs.map((tab) => (
+          {homeworkTabItems.map((tab) => (
             <button
               key={tab.value}
               type="button"
@@ -72,63 +75,115 @@ export function CourseLearningPage() {
         </div>
       </section>
 
+      {/* Модули курса */}
       <section>
-        <h2 className="mb-4 text-xl font-semibold text-slate-900">Курс</h2>
-        <Accordion
-          items={[
-            {
-              id: '1',
-              title: '1. Первая часть ЕГЭ',
-              content: null,
-            },
-            {
-              id: '2',
-              title: '2. Сочинение',
-              content: null,
-            },
-            {
-              id: '3',
-              title: '3. Повторение тем',
-              defaultOpen: true,
-              content: (
-                <div className="space-y-3">
-                  <div className="rounded-lg bg-slate-100 p-3">
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-slate-900">Орфография</span>
-                      <span className="text-sm text-slate-500">30/50</span>
+        <h2 className="mb-4 text-xl font-semibold text-slate-900">Программа курса</h2>
+        <div className="space-y-4">
+          {studentModuleProgress.map((mod) => {
+            const progressPct = mod.totalPoints > 0
+              ? Math.round((mod.earnedPoints / mod.totalPoints) * 100)
+              : 0
+            const isExpanded = expandedModuleId === mod.id
+            const lessons = studentModuleLessonsByModuleId[mod.id] ?? []
+
+            return (
+              <Card key={mod.id} className="overflow-hidden">
+                <button
+                  onClick={() => setExpandedModuleId(isExpanded ? null : mod.id)}
+                  className="flex w-full items-start gap-4 px-6 py-5 text-left transition-colors hover:bg-slate-50"
+                >
+                  {/* Номер модуля */}
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 text-lg font-bold text-white shadow-sm">
+                    {mod.id.slice(-1)}
+                  </div>
+
+                  {/* Информация */}
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-base font-semibold text-slate-900">{mod.title}</h3>
+                      {mod.completed && (
+                        <span className="shrink-0 rounded bg-emerald-100 px-2 py-0.5 text-[10px] font-medium text-emerald-600">
+                          Завершён
+                        </span>
+                      )}
                     </div>
-                    <div className="mt-3 space-y-2">
-                      <div className="flex flex-col gap-2 rounded-lg bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                          <p className="text-sm font-medium text-slate-900">
-                            Задание №9. Правописание гласных
-                          </p>
-                          <p className="text-xs text-slate-500">30/30 · Пройдено</p>
-                        </div>
-                        <Button variant="secondary" size="sm">
-                          Ещё раз
-                        </Button>
+
+                    {/* Статистика */}
+                    <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-slate-500">
+                      <span className="inline-flex items-center gap-1">
+                        <BookOpen className="h-3.5 w-3.5" />
+                        {mod.lessonsCount} {mod.lessonsCount === 1 ? 'урок' : 'уроков'}
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <Target className="h-3.5 w-3.5" />
+                        Необходимо {mod.totalPoints} баллов
+                      </span>
+                      <span className="inline-flex items-center gap-1">
+                        <Calendar className="h-3.5 w-3.5" />
+                        {mod.startDate} – {mod.endDate}
+                      </span>
+                    </div>
+
+                    {/* Прогресс */}
+                    <div className="mt-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="font-medium text-slate-700">
+                          {mod.earnedPoints} / {mod.totalPoints} баллов
+                        </span>
+                        <span className="text-slate-400">{progressPct}%</span>
                       </div>
-                      <div className="flex flex-col gap-2 rounded-lg bg-white p-3 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                          <p className="text-sm font-medium text-slate-900">
-                            Задание №10. Правописание приставок
-                          </p>
-                          <p className="text-xs text-slate-500">0/20 · Не пройдено</p>
-                        </div>
-                        <Link to="/my-courses/1/task/10">
-                          <Button variant="blue" size="sm">
-                            Выполнить
-                          </Button>
-                        </Link>
+                      <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-slate-100">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-violet-500 to-indigo-500 transition-all"
+                          style={{ width: `${progressPct}%` }}
+                        />
                       </div>
                     </div>
                   </div>
-                </div>
-              ),
-            },
-          ]}
-        />
+
+                  {/* Стрелка */}
+                  <div
+                    className={`mt-4 shrink-0 text-slate-400 transition-transform ${
+                      isExpanded ? 'rotate-180' : ''
+                    }`}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </div>
+                </button>
+
+                {/* Раскрывающийся список уроков */}
+                {isExpanded && lessons.length > 0 && (
+                  <div className="border-t border-slate-100 px-6 py-4">
+                    <div className="space-y-2">
+                      {lessons.map((lesson, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 transition-colors hover:bg-slate-100"
+                        >
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-medium text-slate-900">{lesson.title}</p>
+                            <p className="text-xs text-slate-500">
+                              {lesson.points} · {lesson.status}
+                            </p>
+                          </div>
+                          {lesson.taskId && (
+                            <Link to={lesson.isPassed ? `/my-courses/1/task/${lesson.taskId}` : '#'}>
+                              <Button variant={lesson.isPassed ? 'secondary' : 'blue'} size="sm">
+                                {lesson.isPassed ? 'Ещё раз' : 'Выполнить'}
+                              </Button>
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </Card>
+            )
+          })}
+        </div>
       </section>
     </div>
   )

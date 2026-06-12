@@ -5,9 +5,12 @@ import type {
   Curator,
   EnrolledCourse,
   HomeworkItem,
+  HomeworkTabItem,
   LessonItem,
   ScheduleEvent,
   Student,
+  StudentModuleLesson,
+  StudentModuleProgress,
   Task,
   TeacherAssignment,
   TeacherGroup,
@@ -297,6 +300,67 @@ export const essayTask: Task = {
   content:
     'Природа оказывает огромное влияние на человека. Она формирует его характер, воспитывает душу и помогает найти гармонию с самим собой. Когда человек находится на природе, он чувствует себя свободным и счастливым...',
 }
+
+export const studentModuleProgress: StudentModuleProgress[] = [
+  {
+    id: 'm1',
+    title: 'Модуль 1. Орфография',
+    lessonsCount: 6,
+    totalPoints: 120,
+    earnedPoints: 80,
+    startDate: '1 сен',
+    endDate: '30 сен',
+    completed: false,
+  },
+  {
+    id: 'm2',
+    title: 'Модуль 2. Пунктуация',
+    lessonsCount: 8,
+    totalPoints: 160,
+    earnedPoints: 0,
+    startDate: '1 окт',
+    endDate: '31 окт',
+    completed: false,
+  },
+  {
+    id: 'm3',
+    title: 'Модуль 3. Морфология',
+    lessonsCount: 5,
+    totalPoints: 100,
+    earnedPoints: 0,
+    startDate: '1 ноя',
+    endDate: '30 ноя',
+    completed: false,
+  },
+  {
+    id: 'm4',
+    title: 'Модуль 4. Сочинение',
+    lessonsCount: 4,
+    totalPoints: 80,
+    earnedPoints: 0,
+    startDate: '1 дек',
+    endDate: '25 дек',
+    completed: false,
+  },
+]
+
+export const studentModuleLessonsByModuleId: Record<string, StudentModuleLesson[]> = {
+  m1: [
+    { title: 'Введение в орфографию', points: '30/30', status: 'Пройдено', taskId: '9', isPassed: true },
+    { title: 'Задание №9. Правописание гласных', points: '30/30', status: 'Пройдено', taskId: '10', isPassed: true },
+    { title: 'Задание №10. Правописание приставок', points: '0/20', status: 'Не пройдено', taskId: '11', isPassed: false },
+    { title: 'Задание №11. Правописание суффиксов', points: '0/20', status: 'Не пройдено', taskId: '12', isPassed: false },
+  ],
+  m2: [],
+  m3: [],
+  m4: [],
+}
+
+export const homeworkTabItems: HomeworkTabItem[] = [
+  { value: 'todo', label: 'Надо сдать' },
+  { value: 'submitted', label: 'Сданы' },
+  { value: 'overdue', label: 'Просрочены' },
+]
 
 export function formatPrice(price: number): string {
   return price.toLocaleString('ru-RU') + ' ₽'

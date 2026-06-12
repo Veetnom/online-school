@@ -63,15 +63,6 @@ export function CourseStructurePage() {
             </div>
           </div>
 
-          <div className="border-t border-slate-100 px-6 py-3">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-slate-500">Прогресс по модулю</span>
-              <span className="font-medium text-slate-700">0 / {totalPoints} баллов (0%)</span>
-            </div>
-            <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full w-0 rounded-full bg-emerald-500 transition-all" />
-            </div>
-          </div>
         </Card>
 
         {/* Список уроков */}

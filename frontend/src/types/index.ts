@@ -135,3 +135,29 @@ export interface StudentInGroup {
   progress: number
   points: number
 }
+
+/** Прогресс студента по модулю */
+export interface StudentModuleProgress {
+  id: string
+  title: string
+  lessonsCount: number
+  totalPoints: number
+  earnedPoints: number
+  startDate: string
+  endDate: string
+  completed: boolean
+}
+
+/** Урок внутри модуля для студента */
+export interface StudentModuleLesson {
+  title: string
+  points: string
+  status: string
+  taskId?: string
+  isPassed: boolean
+}
+
+export interface HomeworkTabItem {
+  value: HomeworkTab
+  label: string
+}

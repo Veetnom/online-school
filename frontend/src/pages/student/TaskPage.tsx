@@ -2,5 +2,5 @@ import { TaskView } from '../../components/course/TaskView'
 import { sampleTask } from '../../data/mockData'
 
 export function TaskPage() {
-  return <TaskView task={sampleTask} />
+  return <TaskView task={sampleTask} totalTasks={235} />
 }
